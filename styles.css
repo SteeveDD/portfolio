@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #644f24;
-    --secondary-color: #2575fc;
+    /* --primary-color: #644f24;
+    --secondary-color: #2575fc; */
     --accent-color: #beaa8a;
     --magenta-color: #8b008b;
     --dark-color: #1a1a2e;
@@ -30,7 +30,7 @@ body {
     background: linear-gradient(145deg, #644f24, var(--accent-color));
 }
 
-.animate-character {
+/* .animate-character {
     background-image: linear-gradient(
         -225deg,
         #3498db 0%,
@@ -42,7 +42,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: textclip 10s linear infinite;
-}
+} */
 
 @keyframes textclip {
     to {
@@ -65,6 +65,7 @@ body {
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: var(--text-color);
+
 }
 
 .project-card {
@@ -79,14 +80,43 @@ body {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+    text-shadow: none; /* Enlève toute ombre qui pourrait causer un flou */
+    filter: none;
+    filter: blur(0px);
 }
 
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 250px;
-    height: 350px;
-}
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    filter: none;
+  }
+  
+  .swiper-slide {
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    filter: blur(1px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: self-start;
+  }
+  
+  .swiper-slide-active {
+    filter: none;
+  }
+
+  .swiper-slide p {
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    padding: 0 25px 35px 25px;
+    filter: none;
+  }
 
 .card {
     background-color: var(--card-bg);
@@ -94,12 +124,19 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: var(--text-color);
     backface-visibility: hidden; /* Ajouté */
-    perspective: 1000; /* Ajouté */
+    perspective: 1000;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: none; /* Ajouté */
 }
 
 .card-text {
     text-shadow: none; /* Enlève toute ombre qui pourrait causer un flou */
-    filter: none; /* Assurez-vous qu'il n'y a pas d'effet de filtre appliqué */
+    filter: none;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* Assurez-vous qu'il n'y a pas d'effet de filtre appliqué */
 }
 
 .div-logo{
@@ -118,7 +155,7 @@ body {
 .chat-widget {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 50vw;
     width: 300px;
     background-color: var(--card-bg);
     border-radius: 10px;
@@ -128,7 +165,7 @@ body {
 }
 
 .chat-header {
-    background-color: var(--primary-color);
+    background-color: var(--card-bg);
     color: #fff;
     padding: 10px;
     font-weight: bold;
