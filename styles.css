@@ -30,7 +30,7 @@ body {
     background: linear-gradient(145deg, #644f24, var(--accent-color));
 }
 
-/* .animate-character {
+ .animate-character {
     background-image: linear-gradient(
         -225deg,
         #3498db 0%,
@@ -42,7 +42,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: textclip 10s linear infinite;
-} */
+} 
 
 @keyframes textclip {
     to {
@@ -65,11 +65,13 @@ body {
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: var(--text-color);
+    
 
 }
 
 .project-card {
     transition: transform 0.3s ease-in-out;
+    overflow: none;
 }
 
 .project-card:hover {
@@ -83,6 +85,7 @@ body {
     text-shadow: none; /* Enlève toute ombre qui pourrait causer un flou */
     filter: none;
     filter: blur(0px);
+    overflow: hidden;
 }
 
 .swiper {
@@ -90,6 +93,7 @@ body {
     padding-top: 50px;
     padding-bottom: 50px;
     filter: none;
+    
   }
   
   .swiper-slide {
@@ -102,6 +106,18 @@ body {
     flex-direction: column;
     justify-content: end;
     align-items: self-start;
+    
+  }
+  
+  .skill{
+    width: 200px;
+    height: 50px;
+    filter: blur(0px);
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
   }
   
   .swiper-slide-active {
@@ -155,7 +171,7 @@ body {
 .chat-widget {
     position: fixed;
     bottom: 20px;
-    right: 50vw;
+    right: 30px;
     width: 300px;
     background-color: var(--card-bg);
     border-radius: 10px;

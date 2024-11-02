@@ -6,14 +6,40 @@ gsap.from('#accueil .btn', { opacity: 0, y: -20, duration: 1, delay: 1.5 });
 gsap.from('#apropos img', { opacity: 0, x: -50, duration: 1, scrollTrigger: '#apropos' });
 gsap.from('#apropos p', { opacity: 0, x: 50, duration: 1, scrollTrigger: '#apropos' });
 
+const swiperSkill = new Swiper('.mySwiper', {
+    loop: true,
+     speed: 1000,
+     autoplay: {
+         delay: 1000,
+     },
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 10,
+    coverflowEffect: {
+        rotate: 0,
+        stretch: 120,
+        depth: 300,
+        modifier: 1,
+        slideShadows: false,
+    },
+    keyboard: {
+        enabled: false
+      },
+      mousewheel: {
+        thresholdDelta: 70
+      }
+});
+
+
 
 // Initialisation de Swiper
 const swiper = new Swiper('.swiper-container', {
     loop: true,
-    // speed: 3000,
-    // autoplay: {
-    //     delay: 3000,
-    // },
+    speed: 3000,
+    autoplay: {
+    delay: 3000,
+    },
     effect: 'coverflow',
     grabCursor: true,
     centeredSlides: true,
@@ -86,13 +112,27 @@ chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const message = chatInput.value.trim();
     if (message) {
-        addMessage('user', message);
-        chatInput.value = '';
-        // Simulate bot response
-        setTimeout(() => {
-            addMessage('bot', "Merci pour votre message. Je vous répondrai dès que possible.");
-        }, 1000);
-    }
+    addMessage('user', message);
+    chatInput.value = '';
+    // Simulate bot response
+    setTimeout(() => {
+        fetch("http://localhost:8080/nestor")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the JSON data here
+                console.log(data); // You can replace this with your custom handling
+                addMessage('bot', data.message); // Assuming `data.message` is the bot response
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+    }, 1000);
+}
 });
 
 function addMessage(sender, text) {
